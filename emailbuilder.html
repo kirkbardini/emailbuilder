@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template Editor</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #121212;
+            color: #e0e0e0;
+            padding: 20px;
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .editor-container {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .input-section,
+        .preview-section,
+        .utm-section {
+            background-color: #1e1e1e;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+            transition: max-width 0.3s, opacity 0.3s, width 0.3s;
+            margin-right: 10px;
+        }
+
+        .input-section,
+        .preview-section {
+            width: 40%;
+            max-width: 40%;
+        }
+
+        .utm-section {
+            width: 20%;
+            max-width: 20%;
+        }
+
+        .group {
+            margin-bottom: 20px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            box-sizing: border-box;
+            border: 1px solid #444444;
+            background-color: #2b2b2b;
+            color: #e0e0e0;
+            border-radius: 5px;
+            transition: border-color 0.3s;
+        }
+
+        textarea {
+            height: 150px;
+            /* Reduced height for smaller text areas */
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #007bff;
+            outline: none;
+        }
+
+        input[type="color"] {
+            width: 50px;
+            padding: 0;
+            height: 40px;
+            cursor: pointer;
+        }
+
+        input[type="number"] {
+            width: 60px;
+            margin-left: 5px;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+
+        .inline-inputs {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .inline-inputs label {
+            margin: 0;
+            font-size: 0.9em;
+            color: #bbbbbb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        iframe {
+            width: 100%;
+            height: 667px;
+            /* Standard height for mobile devices */
+            border: none;
+            background-color: #ffffff;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .code-viewer {
+            background-color: #1e1e1e;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+        }
+
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            background-color: #2b2b2b;
+            padding: 15px;
+            border-radius: 5px;
+            color: #e0e0e0;
+            overflow-x: auto;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #007bff;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background-color 0.3s ease;
+            width: 100%;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        .toggle-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+
+        .toggle-button {
+            flex: 1;
+            margin-right: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            border-radius: 5px;
+            padding: 10px;
+            transition: background-color 0.3s ease;
+            font-weight: bold;
+        }
+
+        .toggle-button.active {
+            background-color: #0056b3;
+            color: #ffffff;
+        }
+
+        .toggle-button:last-child {
+            margin-right: 0;
+        }
+
+        h1,
+        h2 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .icon {
+            margin-right: 5px;
+            font-size: 18px;
+        }
+
+        @media (max-width: 768px) {
+            .editor-container {
+                flex-direction: column;
+            }
+
+            .preview-section {
+                margin: 20px 0;
+            }
+
+            .utm-section {
+                margin-top: 20px;
+            }
+
+            .toggle-buttons {
+                flex-direction: column;
+            }
+
+            .toggle-button {
+                margin-bottom: 10px;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>Email Template Editor</h1>
+
+    <div class="editor-container">
+        <!-- Email and Button Params -->
+        <div class="input-section">
+            <h2>Email Message</h2>
+            <form id="emailForm">
+                <div class="group">
+                    <label for="bodyMessage">Body Message:</label>
+                    <textarea id="bodyMessage" name="bodyMessage" rows="5"
+                        placeholder="Enter your message here..."><b>Hello {{ contact.firstName }},</b>
+                        
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</textarea>
+                </div>
+
+                <div class="group">
+                    <label for="buttonText">Button Text:</label>
+                    <input type="text" id="buttonText" name="buttonText" value="Button Text" required>
+
+                    <label for="buttonUrl">Button URL:</label>
+                    <input type="url" id="buttonUrl" name="buttonUrl" value="https://example.com" required>
+
+                    <div class="inline-inputs">
+                        <label for="buttonColor">Color:</label>
+                        <input type="color" id="buttonColor" name="buttonColor" value="#FF0A0A">
+
+                        <label for="paddingTop">Top:</label>
+                        <input type="number" id="paddingTop" name="paddingTop" value="20" required>
+
+                        <label for="paddingBottom">Bottom:</label>
+                        <input type="number" id="paddingBottom" name="paddingBottom" value="20" required>
+                    </div>
+                </div>
+
+                <div class="group">
+                    <label for="afterCtaMessage">After CTA Message:</label>
+                    <textarea id="afterCtaMessage" name="afterCtaMessage" rows="3"
+                        placeholder="Enter your after CTA message here...">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</textarea>
+                </div>
+            </form>
+        </div>
+
+        <!-- Email Preview -->
+        <div class="preview-section" id="previewSection">
+            <h2>Email Preview</h2>
+            <div class="toggle-buttons">
+                <button class="toggle-button" id="desktopViewButton" onclick="setPreviewMode('desktop')">
+                    <span class="icon">🖥️</span> Desktop View
+                </button>
+                <button class="toggle-button active" id="mobileViewButton" onclick="setPreviewMode('mobile')">
+                    <span class="icon">📱</span> Mobile View
+                </button>
+            </div>
+            <iframe id="previewContainer"></iframe>
+        </div>
+
+        <!-- UTM Inputs and Company Info -->
+        <div class="utm-section" id="utmSection">
+            <h2>Tracking Settings</h2>
+            <form>
+                <div class="group">
+                    <label for="utmCampaign">UTM Campaign:</label>
+                    <input type="text" id="utmCampaign" name="utmCampaign" placeholder="email name">
+                </div>
+
+                <div class="group">
+                    <label for="utmMedium">UTM Medium:</label>
+                    <input type="text" id="utmMedium" name="utmMedium" placeholder="email">
+                </div>
+
+                <div class="group">
+                    <label for="utmSource">UTM Source:</label>
+                    <input type="text" id="utmSource" name="utmSource" placeholder="courier">
+                </div>
+            </form>
+
+            <h2>Company & Language</h2>
+            <form>
+                <div class="group">
+                    <label for="companyName">Company Name:</label>
+                    <select id="companyName" name="companyName">
+                        <option value="NeoAdTech OÜ">NeoAdTech OÜ</option>
+                        <option value="NeoPub OÜ">NeoPub OÜ</option>
+                        <option value="ActiveView Inc.">ActiveView Inc.</option>
+                    </select>
+                </div>
+
+                <div class="group">
+                    <label for="language">Language:</label>
+                    <select id="language" name="language">
+                        <option value="en">English</option>
+                        <option value="es">Spanish</option>
+                    </select>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="code-viewer" id="codeViewer">
+        <h2>HTML Code</h2>
+        <button onclick="copyToClipboard()">Copy to Clipboard</button>
+        <pre id="htmlCode"></pre>
+    </div>
+
+    <script>
+        // Update the preview and HTML code whenever any input changes
+        document.getElementById('emailForm').addEventListener('input', updatePreview);
+        document.querySelectorAll('.utm-section input, .utm-section select').forEach(input => input.addEventListener('input', updatePreview));
+
+        function updatePreview() {
+            const buttonColor = document.getElementById('buttonColor').value;
+            const buttonUrl = document.getElementById('buttonUrl').value;
+            const buttonText = document.getElementById('buttonText').value;
+            const paddingTop = document.getElementById('paddingTop').value || 20;
+            const paddingBottom = document.getElementById('paddingBottom').value || 20;
+            const bodyMessage = document.getElementById('bodyMessage').value.replace(/\n/g, '</p><p>');
+            const afterCtaMessage = document.getElementById('afterCtaMessage').value.replace(/\n/g, '</p><p>');
+            const utmSource = document.getElementById('utmSource').value || 'courier';
+            const utmMedium = document.getElementById('utmMedium').value || 'email';
+            const utmCampaign = document.getElementById('utmCampaign').value || 'email name';
+            const companyName = document.getElementById('companyName').value;
+            const language = document.getElementById('language').value;
+
+            // Determine address based on company name
+            const address = companyName === 'ActiveView Inc.' ? '5004 Cobalt CT Greenacres, Florida 33463, US' : '10616 Keemia tn4, Tallinn, Estonia';
+
+            // Determine unsubscribe message based on language
+            const unsubscribeMessage = language === 'en'
+                ? "All our content is designed to help you. If you no longer want to receive our recommendations, you can unsubscribe below."
+                : "Todo nuestro contenido está diseñado para ayudarte. Si ya no deseas recibir nuestras recomendaciones, puedes darte de baja a continuación.";
+
+            // Determine unsubscribe link text based on language
+            const unsubscribeLinkText = language === 'en' ? "Unsubscribe from this list" : "Darse de baja";
+
+            // Determine terms links based on language
+            const privacyText = language === 'en' ? "Privacy" : "Privacidad";
+            const termsText = language === 'en' ? "Terms of Use" : "Términos de Uso";
+
+            // Simple validation to ensure URL and text are not empty
+            if (!buttonUrl || !buttonText) {
+                return;
+            }
+
+            // Construct the full URL with UTM parameters
+            const fullUrl = `${buttonUrl}?utm_source=${encodeURIComponent(utmSource)}&utm_medium=${encodeURIComponent(utmMedium)}&utm_campaign=${encodeURIComponent(utmCampaign)}`;
+
+            // Extract domain from button URL for use in privacy and terms links
+            const urlDomain = new URL(buttonUrl).origin;
+
+            const emailTemplate = `
+<!DOCTYPE html>
+<html lang="${language}">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333333;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .button {
+            display: inline-block;
+            background-color: ${buttonColor};
+            color: #ffffff;
+            font-size: 22px;
+            text-align: center;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            margin: 5px;
+        }
+
+        .aftercta {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 0.8em;
+            color: #d3d3d3;
+            text-decoration: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: #aaaaaa;
+        }
+
+        a.bold-link {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+
+        /* Responsive adjustments */
+        @media only screen and (max-width: 600px) {
+            .container {
+                width: 100%;
+                padding: 10px;
+                box-shadow: none;
+                border-radius: 0;
+            }
+        }
+
+        .company-details,
+        .unsubscribe-text {
+            text-align: center;
+            font-size: 0.8em;
+            color: #373333;
+        }
+
+        .company-details {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <center>
+        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+            <tr>
+                <td>
+                    <table role="presentation" class="container" width="100%" cellspacing="0" cellpadding="0"
+                        border="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); max-width: 600px; margin: auto;">
+                        <tr>
+                            <td style="padding: 20px;">
+                                <p>${bodyMessage}</p>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center" style="padding-top: ${paddingTop}px; padding-bottom: ${paddingBottom}px;">
+                                <a href="${fullUrl}" class="button">${buttonText}</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 20px;">
+                                <p>${afterCtaMessage}</p>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+
+        <!-- Company Details Section -->
+        <div class="company-details">
+            <p>${companyName} - ${address}</p>
+        </div>
+
+        <!-- Unsubscribe Text Section -->
+        <div class="unsubscribe-text">
+            <p><i>${unsubscribeMessage}</i></p>
+            <p><a href="#" class="bold-link">${unsubscribeLinkText}</a></p>
+            <p>
+                <a href="${urlDomain}/privacy/" class="bold-link">${privacyText}</a> |
+                <a href="${urlDomain}/terms/" class="bold-link">${termsText}</a>
+            </p>
+        </div>
+    </center>
+</body>
+
+</html>
+            `.trim();
+
+            // Set the iframe source to display the email preview
+            const previewContainer = document.getElementById('previewContainer');
+            previewContainer.srcdoc = emailTemplate;
+
+            // Update HTML code display
+            document.getElementById('htmlCode').textContent = emailTemplate;
+        }
+
+        function setPreviewMode(mode) {
+            const previewSection = document.getElementById('previewSection');
+            const utmSection = document.getElementById('utmSection');
+            const desktopViewButton = document.getElementById('desktopViewButton');
+            const mobileViewButton = document.getElementById('mobileViewButton');
+
+            if (mode === 'desktop') {
+                previewSection.style.width = '850px'; // Ensure the preview section is at least 850px wide
+                previewSection.style.maxWidth = '850px';
+                utmSection.style.maxWidth = '0';
+                utmSection.style.opacity = '0';
+
+                desktopViewButton.classList.add('active');
+                mobileViewButton.classList.remove('active');
+            } else if (mode === 'mobile') {
+                previewSection.style.width = '375px'; // Standard mobile device width
+                previewSection.style.maxWidth = '375px';
+                previewSection.querySelector('iframe').style.height = '667px'; // Standard mobile device height
+                utmSection.style.maxWidth = '20%';
+                utmSection.style.opacity = '1';
+
+                mobileViewButton.classList.add('active');
+                desktopViewButton.classList.remove('active');
+            }
+        }
+
+        function copyToClipboard() {
+            const htmlCode = document.getElementById('htmlCode').textContent;
+            navigator.clipboard.writeText(htmlCode).then(() => {
+                alert('HTML code copied to clipboard!');
+            }, (err) => {
+                console.error('Could not copy text: ', err);
+            });
+        }
+
+        // Initial preview on page load
+        updatePreview();
+        setPreviewMode('mobile'); // Set the default view to mobile
+    </script>
+
+</body>
+
+</html>
