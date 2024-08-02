@@ -244,13 +244,18 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
                     <input type="url" id="buttonUrl" name="buttonUrl" value="https://example.com" required>
 
                     <div class="inline-inputs">
-                        <label for="buttonColor">Color:</label>
+                        <label for="buttonColor">Button Color:</label>
                         <input type="color" id="buttonColor" name="buttonColor" value="#FF0A0A">
 
-                        <label for="paddingTop">Top:</label>
+                        <label for="buttonTextColor">Text Color:</label>
+                        <input type="color" id="buttonTextColor" name="buttonTextColor" value="#FFFFFF">
+                    </div>
+
+                    <div class="inline-inputs">
+                        <label for="paddingTop">Padding Top:</label>
                         <input type="number" id="paddingTop" name="paddingTop" value="20" required>
 
-                        <label for="paddingBottom">Bottom:</label>
+                        <label for="paddingBottom">Padding Bottom:</label>
                         <input type="number" id="paddingBottom" name="paddingBottom" value="0" required>
                     </div>
                 </div>
@@ -332,6 +337,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
 
         function updatePreview() {
             const buttonColor = document.getElementById('buttonColor').value;
+            const buttonTextColor = document.getElementById('buttonTextColor').value;
             const buttonUrl = document.getElementById('buttonUrl').value;
             const buttonText = document.getElementById('buttonText').value;
             const paddingTop = document.getElementById('paddingTop').value || 20;
@@ -341,7 +347,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
             const paragraphStyle = 'style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;"';
             const bodyMessage = document.getElementById('bodyMessage').value.replace(/\n/g, `</p><p ${paragraphStyle}>`);
             const afterCtaMessage = document.getElementById('afterCtaMessage').value.replace(/\n/g, `</p><p ${paragraphStyle}>`);
-            
+
             const utmSource = document.getElementById('utmSource').value || 'courier';
             const utmMedium = document.getElementById('utmMedium').value || 'email';
             const utmCampaign = document.getElementById('utmCampaign').value || 'email name';
@@ -381,6 +387,9 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body { font-family: sans-serif; }
+    </style>
 </head>
 
 <body style="margin: 0; padding: 0; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-color: #f4f4f4;">
@@ -394,7 +403,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
                             <td align="center" style="padding-top: ${paddingTop}px; padding-bottom: ${paddingBottom}px;">
-                                <a href="${fullUrl}" style="display: inline-block; background-color: ${buttonColor}; color: #ffffff; font-size: 24px; font-weight: bold; text-align: center; text-decoration: none; padding: 12px 24px; border-radius: 5px; margin: 20px 0;">${buttonText}</a>
+                                <a href="${fullUrl}" style="display: inline-block; background-color: ${buttonColor}; color: ${buttonTextColor}; font-size: 24px; font-weight: bold; text-align: center; text-decoration: none; padding: 12px 24px; border-radius: 5px; margin: 20px 0;">${buttonText}</a>
                             </td>
                         </tr>
                     </table>
@@ -434,7 +443,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
             previewContainer.srcdoc = emailTemplate;
 
             // Update HTML code display
-            document.getElementById('htmlCode').textContent = emailTemplate;
+            document.getElementById('htmlCode').textContent = emailTemplate.replace(/<style>.*?<\/style>/s, ''); // Remove preview-specific styles for the final code
         }
 
         function setPreviewMode(mode) {
