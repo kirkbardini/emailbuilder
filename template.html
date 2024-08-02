@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="${language}">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<body style="margin: 0; padding: 0; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-color: #f4f4f4;">
+    <center style="width: 100%; background-color: #f4f4f4;">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
+            <tr>
+                <td style="padding: 20px; text-align: left; background-color: #ffffff; border-radius: 8px 8px 0 0;">
+                    <p style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;">
+                        ${bodyMessage}
+                    </p>
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
+                        <tr>
+                            <td align="center" style="padding-top: ${paddingTop}px; padding-bottom: ${paddingBottom}px;">
+                                <a href="${fullUrl}" style="display: inline-block; background-color: ${buttonColor}; color: #ffffff; font-size: 24px; font-weight: bold; text-align: center; text-decoration: none; padding: 12px 24px; border-radius: 5px; margin: 20px 0;">${buttonText}</a>
+                            </td>
+                        </tr>
+                    </table>
+                    <p style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;">
+                        ${afterCtaMessage}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 20px; text-align: center; background-color: #ffffff; border-radius: 0 0 8px 8px;">
+                    <hr style="border: none; border-top: 1px solid #cccccc; margin: 20px 0;" />
+                    <p style="margin: 0; line-height: 1.4; font-size: 14px; color: #666666;">
+                        ${companyName} - ${address}
+                    </p>
+                    <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
+                        <i>${unsubscribeMessage}</i>
+                    </p>
+                    <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
+                        <a href="#" style="color: #666666; font-weight: bold; text-decoration: underline;">${unsubscribeLinkText}</a>
+                    </p>
+                    <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
+                        <a href="${urlDomain}/privacy/" style="color: #666666; text-decoration: underline;">${privacyText}</a>
+                        &nbsp;|&nbsp;
+                        <a href="${urlDomain}/terms/" style="color: #666666; text-decoration: underline;">${termsText}</a>
+                    </p>
+                </td>
+            </tr>
+        </table>
+    </center>
+</body>
+
+</html>

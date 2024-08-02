@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Template Editor</title>
     <style>
@@ -65,7 +65,6 @@
 
         textarea {
             height: 150px;
-            /* Reduced height for smaller text areas */
         }
 
         input:focus,
@@ -107,7 +106,6 @@
         iframe {
             width: 100%;
             height: 667px;
-            /* Standard height for mobile devices */
             border: none;
             background-color: #ffffff;
             border-radius: 10px;
@@ -253,7 +251,7 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
                         <input type="number" id="paddingTop" name="paddingTop" value="20" required>
 
                         <label for="paddingBottom">Bottom:</label>
-                        <input type="number" id="paddingBottom" name="paddingBottom" value="20" required>
+                        <input type="number" id="paddingBottom" name="paddingBottom" value="0" required>
                     </div>
                 </div>
 
@@ -337,9 +335,13 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
             const buttonUrl = document.getElementById('buttonUrl').value;
             const buttonText = document.getElementById('buttonText').value;
             const paddingTop = document.getElementById('paddingTop').value || 20;
-            const paddingBottom = document.getElementById('paddingBottom').value || 20;
-            const bodyMessage = document.getElementById('bodyMessage').value.replace(/\n/g, '</p><p>');
-            const afterCtaMessage = document.getElementById('afterCtaMessage').value.replace(/\n/g, '</p><p>');
+            const paddingBottom = document.getElementById('paddingBottom').value || 0;
+
+            // Add paragraph style to each new paragraph
+            const paragraphStyle = 'style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;"';
+            const bodyMessage = document.getElementById('bodyMessage').value.replace(/\n/g, `</p><p ${paragraphStyle}>`);
+            const afterCtaMessage = document.getElementById('afterCtaMessage').value.replace(/\n/g, `</p><p ${paragraphStyle}>`);
+            
             const utmSource = document.getElementById('utmSource').value || 'courier';
             const utmMedium = document.getElementById('utmMedium').value || 'email';
             const utmCampaign = document.getElementById('utmCampaign').value || 'email name';
@@ -377,125 +379,50 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
 <html lang="${language}">
 
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Email Template</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            line-height: 1.6;
-            color: #333333;
-            background-color: #f4f4f4;
-            margin: 0;
-            padding: 0;
-            -webkit-text-size-adjust: 100%;
-            -ms-text-size-adjust: 100%;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 600px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-
-        .button {
-            display: inline-block;
-            background-color: ${buttonColor};
-            color: #ffffff;
-            font-size: 22px;
-            text-align: center;
-            text-decoration: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            margin: 5px;
-        }
-
-        .aftercta {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 0.8em;
-            color: #d3d3d3;
-            text-decoration: none;
-        }
-
-        a {
-            text-decoration: none;
-            color: #aaaaaa;
-        }
-
-        a.bold-link {
-            font-weight: bold;
-            text-decoration: underline;
-        }
-
-        /* Responsive adjustments */
-        @media only screen and (max-width: 600px) {
-            .container {
-                width: 100%;
-                padding: 10px;
-                box-shadow: none;
-                border-radius: 0;
-            }
-        }
-
-        .company-details,
-        .unsubscribe-text {
-            text-align: center;
-            font-size: 0.8em;
-            color: #373333;
-        }
-
-        .company-details {
-            margin-top: 20px;
-        }
-    </style>
 </head>
 
-<body>
-    <center>
-        <table role="presentation" width="100%" cellspacing="0" cellpadding="0" border="0">
+<body style="margin: 0; padding: 0; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-color: #f4f4f4;">
+    <center style="width: 100%; background-color: #f4f4f4;">
+        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
             <tr>
-                <td>
-                    <table role="presentation" class="container" width="100%" cellspacing="0" cellpadding="0"
-                        border="0" style="background-color: #ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); max-width: 600px; margin: auto;">
-                        <tr>
-                            <td style="padding: 20px;">
-                                <p>${bodyMessage}</p>
-                            </td>
-                        </tr>
+                <td style="padding: 20px; text-align: left; background-color: #ffffff; border-radius: 8px 8px 0 0;">
+                    <p style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;">
+                        ${bodyMessage}
+                    </p>
+                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
                             <td align="center" style="padding-top: ${paddingTop}px; padding-bottom: ${paddingBottom}px;">
-                                <a href="${fullUrl}" class="button">${buttonText}</a>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td style="padding: 20px;">
-                                <p>${afterCtaMessage}</p>
+                                <a href="${fullUrl}" style="display: inline-block; background-color: ${buttonColor}; color: #ffffff; font-size: 24px; font-weight: bold; text-align: center; text-decoration: none; padding: 12px 24px; border-radius: 5px; margin: 20px 0;">${buttonText}</a>
                             </td>
                         </tr>
                     </table>
+                    <p style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;">
+                        ${afterCtaMessage}
+                    </p>
+                </td>
+            </tr>
+            <tr>
+                <td style="padding: 20px; text-align: center; background-color: #ffffff; border-radius: 0 0 8px 8px;">
+                    <hr style="border: none; border-top: 1px solid #cccccc; margin: 20px 0;" />
+                    <p style="margin: 0; line-height: 1.4; font-size: 14px; color: #666666;">
+                        ${companyName} - ${address}
+                    </p>
+                    <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
+                        <i>${unsubscribeMessage}</i>
+                    </p>
+                    <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
+                        <a href="#" style="color: #666666; font-weight: bold; text-decoration: underline;">${unsubscribeLinkText}</a>
+                    </p>
+                    <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
+                        <a href="${urlDomain}/privacy/" style="color: #666666; text-decoration: underline;">${privacyText}</a>
+                        &nbsp;|&nbsp;
+                        <a href="${urlDomain}/terms/" style="color: #666666; text-decoration: underline;">${termsText}</a>
+                    </p>
                 </td>
             </tr>
         </table>
-
-        <!-- Company Details Section -->
-        <div class="company-details">
-            <p>${companyName} - ${address}</p>
-        </div>
-
-        <!-- Unsubscribe Text Section -->
-        <div class="unsubscribe-text">
-            <p><i>${unsubscribeMessage}</i></p>
-            <p><a href="#" class="bold-link">${unsubscribeLinkText}</a></p>
-            <p>
-                <a href="${urlDomain}/privacy/" class="bold-link">${privacyText}</a> |
-                <a href="${urlDomain}/terms/" class="bold-link">${termsText}</a>
-            </p>
-        </div>
     </center>
 </body>
 
