@@ -20,6 +20,7 @@ function updatePreview() {
     const utmCampaign = document.getElementById('utmCampaign').value || 'email name';
     const companyName = document.getElementById('companyName').value;
     const language = document.getElementById('language').value;
+    const unsubscribeLink = document.getElementById('unsubscribeLink').value || '%UNSUBSCRIBELINK%';
 
     // Determine address based on company name
     const address = companyName === 'ActiveView Inc.' ? '5004 Cobalt CT Greenacres, Florida 33463, US' : '10616 Keemia tn4, Tallinn, Estonia';
@@ -89,7 +90,7 @@ function updatePreview() {
                         <i>${unsubscribeMessage}</i>
                     </p>
                     <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
-                        <a href="#" style="color: #666666; font-weight: bold; text-decoration: underline;">${unsubscribeLinkText}</a>
+                        <a href="${unsubscribeLink}" style="color: #666666; font-weight: bold; text-decoration: underline;">${unsubscribeLinkText}</a>
                     </p>
                     <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
                         <a href="${urlDomain}/privacy/" style="color: #666666; text-decoration: underline;">${privacyText}</a>
