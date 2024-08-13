@@ -5,207 +5,15 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Email Template Editor</title>
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="path/to/your/favicon.png" />
     <!-- Bootstrap CSS and Icons -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
     <!-- Prism.js CSS for syntax highlighting -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/themes/prism-tomorrow.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f5f5f5;
-            color: #333333;
-            transition: background-color 0.3s, color 0.3s;
-            font-size: 0.9rem;
-        }
-
-        .dark-theme {
-            background-color: #181818;
-            color: #e0e0e0;
-        }
-
-        .container {
-            max-width: 1400px;
-            margin-top: 20px;
-        }
-
-        .navbar {
-            background-color: #000000;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-            padding: 0rem 0rem;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .dark-theme .navbar {
-            background-color: #222222;
-        }
-
-        .navbar-brand,
-        .navbar-nav .nav-link {
-            color: #ffffff;
-            transition: color 0.3s;
-        }
-
-        .dark-theme .navbar-brand,
-        .dark-theme .navbar-nav .nav-link {
-            color: #e0e0e0;
-        }
-
-        .navbar-brand:hover,
-        .navbar-nav .nav-link:hover {
-            color: #cccccc;
-        }
-
-        .card {
-            border-radius: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
-            background-color: #ffffff;
-            transition: background-color 0.3s, color 0.3s;
-            margin-bottom: 20px;
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-        }
-
-        .dark-theme .card {
-            background-color: #222222;
-            color: #e0e0e0;
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
-        }
-
-        .card-header {
-            background-color: #4a4a4a;
-            color: #ffffff;
-            border-radius: 10px 10px 0 0;
-            text-align: center;
-            font-weight: bold;
-            font-size: 1rem;
-        }
-
-        .card-body {
-            border-radius: 0 0 10px 10px;
-            flex: 1;
-        }
-
-        .form-control,
-        .form-control:focus {
-            background-color: #f2f2f2;
-            color: #333333;
-            border: 1px solid #ced4da;
-        }
-
-        .dark-theme .form-control,
-        .dark-theme .form-control:focus {
-            background-color: #2b2b2b;
-            color: #e0e0e0;
-            border: 1px solid #444444;
-        }
-
-        .form-group label {
-            font-weight: bold;
-            font-size: 0.9rem;
-        }
-
-        .btn-custom {
-            background-color: #4a4a4a;
-            color: #ffffff;
-            font-weight: bold;
-            transition: background-color 0.3s ease;
-            font-size: 0.9rem;
-        }
-
-        .btn-custom:hover {
-            background-color: #353535;
-        }
-
-        .btn.active {
-            background-color: #353535;
-            color: #ffffff;
-        }
-
-        .iframe-container {
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-            background-color: #ffffff;
-            transition: background-color 0.3s;
-            overflow-x: auto;
-            margin-bottom: 20px;
-        }
-
-        .dark-theme .iframe-container {
-            background-color: #1e1e1e;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.1);
-        }
-
-        iframe {
-            width: 100%;
-            height: 667px;
-            border: none;
-        }
-
-        .toggle-buttons .btn {
-            margin-right: 5px;
-            transition: background-color 0.3s;
-        }
-
-        .toggle-buttons .btn:last-child {
-            margin-right: 0;
-        }
-
-        .code-viewer pre {
-            background-color: #f8f9fa;
-            color: #333333;
-            border-radius: 10px;
-            padding: 15px;
-            border: 1px solid #ced4da;
-            overflow-x: auto;
-            transition: background-color 0.3s, color 0.3s;
-            white-space: pre-wrap;
-            word-break: break-all;
-        }
-
-        .dark-theme .code-viewer pre {
-            background-color: #2b2b2b;
-            color: #e0e0e0;
-            border: 1px solid #444444;
-        }
-
-        .form-inline .form-control {
-            width: auto;
-            flex: 1;
-            margin-right: 10px;
-        }
-
-        .form-inline #utmCampaign {
-            flex: 1.5;
-        }
-
-        .form-inline #utmMedium,
-        .form-inline #utmSource {
-            flex: 0.75;
-        }
-
-        @media (max-width: 768px) {
-            .editor-container {
-                flex-direction: column;
-            }
-
-            .preview-section {
-                margin-top: 20px;
-            }
-
-            .utm-section {
-                margin-top: 20px;
-            }
-
-            .form-inline .form-control {
-                width: 100%;
-                margin-right: 0;
-                margin-bottom: 10px;
-            }
-        }
-    </style>
+    <!-- Custom Styles -->
+    <link href="styles.css" rel="stylesheet">
 </head>
 
 <body>
@@ -213,7 +21,7 @@
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark">
         <div class="container-fluid">
-            <a class="navbar-brand" href="https://kirkbardini.github.io/emailbuilder/emailbuilder.html"><i class="bi bi-house-door-fill"></i></a>
+            <a class="navbar-brand" href="#"><i class="bi bi-house-door-fill"></i></a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -236,46 +44,43 @@
     </nav>
 
     <div class="container">
-        <!-- Tracking Settings & Company Info -->
+            <!-- Tracking Settings & Company Info -->
         <div class="card mb-4">
             <div class="card-header">
                 Tracking Settings & Company Info
             </div>
             <div class="card-body">
-                <form class="form-inline" id="trackingForm">
-                    <div class="form-group mr-2">
-                        <label for="utmCampaign" class="sr-only">UTM Campaign:</label>
-                        <input type="text" class="form-control" id="utmCampaign" name="utmCampaign"
-                            placeholder="email name" aria-label="UTM Campaign">
+                <form id="trackingForm">
+                    <div class="form-row">
+                        <div class="form-group col-md-5">
+                            <label for="utmCampaign">UTM Campaign:</label>
+                            <input type="text" class="form-control" id="utmCampaign" name="utmCampaign" placeholder="email_campaing_name" aria-label="UTM Campaign">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="utmMedium">UTM Medium:</label>
+                            <input type="text" class="form-control" id="utmMedium" name="utmMedium" placeholder="email" aria-label="UTM Medium">
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="utmSource">UTM Source:</label>
+                            <input type="text" class="form-control" id="utmSource" name="utmSource" placeholder="courier" aria-label="UTM Source">
+                        </div>
                     </div>
-
-                    <div class="form-group mr-2">
-                        <label for="utmMedium" class="sr-only">UTM Medium:</label>
-                        <input type="text" class="form-control" id="utmMedium" name="utmMedium" placeholder="email"
-                            aria-label="UTM Medium">
-                    </div>
-
-                    <div class="form-group mr-2">
-                        <label for="utmSource" class="sr-only">UTM Source:</label>
-                        <input type="text" class="form-control" id="utmSource" name="utmSource" placeholder="courier"
-                            aria-label="UTM Source">
-                    </div>
-
-                    <div class="form-group mr-2">
-                        <label for="companyName" class="sr-only">Company Name:</label>
-                        <select class="form-control" id="companyName" name="companyName" aria-label="Company Name">
-                            <option value="NeoAdTech OÜ">NeoAdTech OÜ</option>
-                            <option value="NeoPub OÜ">NeoPub OÜ</option>
-                            <option value="ActiveView Inc.">ActiveView Inc.</option>
-                        </select>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="language" class="sr-only">Language:</label>
-                        <select class="form-control" id="language" name="language" aria-label="Language">
-                            <option value="en">English</option>
-                            <option value="es">Spanish</option>
-                        </select>
+                    <div class="form-row">
+                        <div class="form-group col-md-2">
+                            <label for="companyName">Company Name:</label>
+                            <select class="form-control" id="companyName" name="companyName" aria-label="Company Name">
+                                <option value="NeoAdTech OÜ">NeoAdTech OÜ</option>
+                                <option value="NeoPub OÜ">NeoPub OÜ</option>
+                                <option value="ActiveView Inc.">ActiveView Inc.</option>
+                            </select>
+                        </div>
+                        <div class="form-group col-md-2">
+                            <label for="language">Language:</label>
+                            <select class="form-control" id="language" name="language" aria-label="Language">
+                                <option value="en">English</option>
+                                <option value="es">Spanish</option>
+                            </select>
+                        </div>
                     </div>
                 </form>
             </div>
@@ -292,7 +97,7 @@
                         <form id="emailForm">
                             <div class="form-group">
                                 <label for="bodyMessage">Body Message:</label>
-                                <textarea class="form-control" id="bodyMessage" name="bodyMessage" rows="6"
+                                <textarea class="form-control" id="bodyMessage" name="bodyMessage" rows="8"
                                     placeholder="Enter your message here..."><b>Hello {{ contact.firstName }},</b>
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet.</textarea>
@@ -386,167 +191,8 @@ Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praes
     <!-- Prism.js for syntax highlighting -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/prism.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.28.0/components/prism-markup.min.js"></script>
-
-    <script>
-        // Update the preview and HTML code whenever any input changes
-        document.getElementById('emailForm').addEventListener('input', updatePreview);
-        document.getElementById('trackingForm').addEventListener('input', updatePreview);
-
-        function updatePreview() {
-            const buttonColor = document.getElementById('buttonColor').value;
-            const buttonTextColor = document.getElementById('buttonTextColor').value;
-            const buttonUrl = document.getElementById('buttonUrl').value;
-            const buttonText = document.getElementById('buttonText').value;
-            const paddingTop = document.getElementById('paddingTop').value || 20;
-            const paddingBottom = document.getElementById('paddingBottom').value || 0;
-
-            // Add paragraph style to each new paragraph
-            const paragraphStyle = 'style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;"';
-            const bodyMessage = document.getElementById('bodyMessage').value.replace(/\n/g, `</p><p ${paragraphStyle}>`);
-            const afterCtaMessage = document.getElementById('afterCtaMessage').value.replace(/\n/g, `</p><p ${paragraphStyle}>`);
-
-            const utmSource = document.getElementById('utmSource').value || 'courier';
-            const utmMedium = document.getElementById('utmMedium').value || 'email';
-            const utmCampaign = document.getElementById('utmCampaign').value || 'email name';
-            const companyName = document.getElementById('companyName').value;
-            const language = document.getElementById('language').value;
-
-            // Determine address based on company name
-            const address = companyName === 'ActiveView Inc.' ? '5004 Cobalt CT Greenacres, Florida 33463, US' : '10616 Keemia tn4, Tallinn, Estonia';
-
-            // Determine unsubscribe message based on language
-            const unsubscribeMessage = language === 'en'
-                ? "All our content is designed to help you. If you no longer want to receive our recommendations, you can unsubscribe below."
-                : "Todo nuestro contenido está diseñado para ayudarte. Si ya no deseas recibir nuestras recomendaciones, puedes darte de baja a continuación.";
-
-            // Determine unsubscribe link text based on language
-            const unsubscribeLinkText = language === 'en' ? "Unsubscribe from this list" : "Darse de baja";
-
-            // Determine terms links based on language
-            const privacyText = language === 'en' ? "Privacy" : "Privacidad";
-            const termsText = language === 'en' ? "Terms of Use" : "Términos de Uso";
-
-            // Simple validation to ensure URL and text are not empty
-            if (!buttonUrl || !buttonText) {
-                return;
-            }
-
-            // Construct the full URL with UTM parameters
-            const fullUrl = `${buttonUrl}?utm_source=${encodeURIComponent(utmSource)}&utm_medium=${encodeURIComponent(utmMedium)}&utm_campaign=${encodeURIComponent(utmCampaign)}`;
-
-            // Extract domain from button URL for use in privacy and terms links
-            const urlDomain = new URL(buttonUrl).origin;
-
-            const emailTemplate = `
-<!DOCTYPE html>
-<html lang="${language}">
-
-<head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <style>
-        body { font-family: sans-serif; }
-    </style>
-</head>
-
-<body style="margin: 0; padding: 0; width: 100%; -webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%; background-color: #f4f4f4;">
-    <center style="width: 100%; background-color: #f4f4f4;">
-        <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
-            <tr>
-                <td style="padding: 20px; text-align: left; background-color: #ffffff; border-radius: 8px 8px 0 0;">
-                    <p style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;">
-                        ${bodyMessage}
-                    </p>
-                    <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
-                        <tr>
-                            <td align="center" style="padding-top: ${paddingTop}px; padding-bottom: ${paddingBottom}px;">
-                                <a href="${fullUrl}" style="display: inline-block; background-color: ${buttonColor}; color: ${buttonTextColor}; font-size: 24px; font-weight: bold; text-align: center; text-decoration: none; padding: 12px 24px; border-radius: 5px; margin: 20px 0;">${buttonText}</a>
-                            </td>
-                        </tr>
-                    </table>
-                    <p style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;">
-                        ${afterCtaMessage}
-                    </p>
-                </td>
-            </tr>
-            <tr>
-                <td style="padding: 20px; text-align: center; background-color: #ffffff; border-radius: 0 0 8px 8px;">
-                    <hr style="border: none; border-top: 1px solid #cccccc; margin: 20px 0;" />
-                    <p style="margin: 0; line-height: 1.4; font-size: 14px; color: #666666;">
-                        ${companyName} - ${address}
-                    </p>
-                    <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
-                        <i>${unsubscribeMessage}</i>
-                    </p>
-                    <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
-                        <a href="#" style="color: #666666; font-weight: bold; text-decoration: underline;">${unsubscribeLinkText}</a>
-                    </p>
-                    <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
-                        <a href="${urlDomain}/privacy/" style="color: #666666; text-decoration: underline;">${privacyText}</a>
-                        &nbsp;|&nbsp;
-                        <a href="${urlDomain}/terms/" style="color: #666666; text-decoration: underline;">${termsText}</a>
-                    </p>
-                </td>
-            </tr>
-        </table>
-    </center>
-</body>
-
-</html>
-            `.trim();
-
-            // Set the iframe source to display the email preview
-            const previewContainer = document.getElementById('previewContainer');
-            previewContainer.srcdoc = emailTemplate;
-
-            // Update HTML code display and highlight
-            const htmlCodeElement = document.getElementById('htmlCode');
-            htmlCodeElement.textContent = emailTemplate.replace(/<style>.*?<\/style>/s, ''); // Remove preview-specific styles for the final code
-            Prism.highlightElement(htmlCodeElement); // Apply syntax highlighting
-        }
-
-        function setPreviewMode(mode) {
-            const previewContainer = document.getElementById('previewContainer');
-            const desktopViewButton = document.getElementById('desktopViewButton');
-            const mobileViewButton = document.getElementById('mobileViewButton');
-
-            if (mode === 'desktop') {
-                previewContainer.style.width = '850px'; // Set the desktop view width to at least 850px
-                previewContainer.style.height = '667px';
-
-                desktopViewButton.classList.add('active');
-                mobileViewButton.classList.remove('active');
-            } else if (mode === 'mobile') {
-                previewContainer.style.width = '375px';
-                previewContainer.style.height = '667px';
-
-                mobileViewButton.classList.add('active');
-                desktopViewButton.classList.remove('active');
-            }
-        }
-
-        function copyToClipboard() {
-            const htmlCode = document.getElementById('htmlCode').textContent;
-            navigator.clipboard.writeText(htmlCode).then(() => {
-                alert('HTML code copied to clipboard!');
-            }, (err) => {
-                console.error('Could not copy text: ', err);
-            });
-        }
-
-        // Theme toggle functionality
-        document.getElementById('themeToggleButton').addEventListener('click', function () {
-            document.body.classList.toggle('dark-theme');
-            document.querySelectorAll('.card').forEach(card => card.classList.toggle('dark-theme'));
-            document.querySelectorAll('.iframe-container').forEach(container => container.classList.toggle('dark-theme'));
-            document.querySelectorAll('.code-viewer pre').forEach(pre => pre.classList.toggle('dark-theme'));
-            document.querySelectorAll('.navbar').forEach(navbar => navbar.classList.toggle('dark-theme'));
-        });
-
-        // Initial preview on page load
-        updatePreview();
-        setPreviewMode('mobile'); // Set the default view to mobile
-    </script>
+    <!-- Custom JavaScript -->
+    <script src="application.js"></script>
 
 </body>
 
