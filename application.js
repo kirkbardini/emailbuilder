@@ -17,7 +17,7 @@ function updatePreview() {
 
     const utmSource = document.getElementById('utmSource').value || 'courier';
     const utmMedium = document.getElementById('utmMedium').value || 'email';
-    const utmCampaign = document.getElementById('utmCampaign').value || 'email name';
+    const utmCampaign = document.getElementById('utmCampaign').value || 'email_campaign_name';
     const companyName = document.getElementById('companyName').value;
     const language = document.getElementById('language').value;
     const unsubscribeLink = document.getElementById('unsubscribeLink').value || '%UNSUBSCRIBELINK%';
