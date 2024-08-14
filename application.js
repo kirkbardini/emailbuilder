@@ -10,7 +10,6 @@ function updatePreview() {
     const paddingTop = document.getElementById('paddingTop').value || 20;
     const paddingBottom = document.getElementById('paddingBottom').value || 0;
 
-    // Add paragraph style to each new paragraph
     const paragraphStyle = 'style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;"';
     const bodyMessage = document.getElementById('bodyMessage').value.replace(/\n/g, `</p><p ${paragraphStyle}>`);
     const afterCtaMessage = document.getElementById('afterCtaMessage').value.replace(/\n/g, `</p><p ${paragraphStyle}>`);
@@ -21,31 +20,24 @@ function updatePreview() {
     const companyName = document.getElementById('companyName').value;
     const language = document.getElementById('language').value;
     const unsubscribeLink = document.getElementById('unsubscribeLink').value || '%UNSUBSCRIBELINK%';
+    const bodyMessageAlignment = document.getElementById('bodyMessageAlignment').value || 'left';
 
-    // Determine address based on company name
     const address = companyName === 'ActiveView Inc.' ? '5004 Cobalt CT Greenacres, Florida 33463, US' : '10616 Keemia tn4, Tallinn, Estonia';
 
-    // Determine unsubscribe message based on language
     const unsubscribeMessage = language === 'en'
         ? "All our content is designed to help you. If you no longer want to receive our recommendations, you can unsubscribe below."
         : "Todo nuestro contenido está diseñado para ayudarte. Si ya no deseas recibir nuestras recomendaciones, puedes darte de baja a continuación.";
 
-    // Determine unsubscribe link text based on language
     const unsubscribeLinkText = language === 'en' ? "Unsubscribe from this list" : "Darse de baja";
 
-    // Determine terms links based on language
     const privacyText = language === 'en' ? "Privacy" : "Privacidad";
     const termsText = language === 'en' ? "Terms of Use" : "Términos de Uso";
 
-    // Simple validation to ensure URL and text are not empty
     if (!buttonUrl || !buttonText) {
         return;
     }
 
-    // Construct the full URL with UTM parameters
     const fullUrl = `${buttonUrl}?utm_source=${encodeURIComponent(utmSource)}&utm_medium=${encodeURIComponent(utmMedium)}&utm_campaign=${encodeURIComponent(utmCampaign)}`;
-
-    // Extract domain from button URL for use in privacy and terms links
     const urlDomain = new URL(buttonUrl).origin;
 
     const emailTemplate = `
@@ -64,7 +56,7 @@ function updatePreview() {
     <center style="width: 100%; background-color: #f4f4f4;">
         <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%" style="max-width: 600px; margin: 0 auto; background-color: #ffffff;">
             <tr>
-                <td style="padding: 20px; text-align: left; background-color: #ffffff; border-radius: 8px 8px 0 0;">
+                <td style="padding: 20px; text-align: ${bodyMessageAlignment}; background-color: #ffffff; border-radius: 8px 8px 0 0;">
                     <p style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;">
                         ${bodyMessage}
                     </p>
@@ -75,7 +67,11 @@ function updatePreview() {
                             </td>
                         </tr>
                     </table>
-                    <p style="margin: 20px 0 0; line-height: 1.4; font-size: 18px;">
+                </td>
+            </tr>
+            <tr>
+                <td style="padding-left: 20px; padding-right: 20px; text-align: left; background-color: #ffffff; border-radius: 0 0 8px 8px;">
+                    <p style="margin: 0 0 0 0; line-height: 1.4; font-size: 18px;">
                         ${afterCtaMessage}
                     </p>
                 </td>
@@ -106,15 +102,15 @@ function updatePreview() {
 </html>
     `.trim();
 
-    // Set the iframe source to display the email preview
     const previewContainer = document.getElementById('previewContainer');
     previewContainer.srcdoc = emailTemplate;
 
-    // Update HTML code display and highlight
     const htmlCodeElement = document.getElementById('htmlCode');
-    htmlCodeElement.textContent = emailTemplate.replace(/<style>.*?<\/style>/s, ''); // Remove preview-specific styles for the final code
-    Prism.highlightElement(htmlCodeElement); // Apply syntax highlighting
+    htmlCodeElement.textContent = emailTemplate.replace(/<style>.*?<\/style>/s, ''); 
+    Prism.highlightElement(htmlCodeElement); 
 }
+
+
 
 function setPreviewMode(mode) {
     const previewContainer = document.getElementById('previewContainer');
