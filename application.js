@@ -21,6 +21,7 @@ function updatePreview() {
     const language = document.getElementById('language').value;
     const unsubscribeLink = document.getElementById('unsubscribeLink').value || '%UNSUBSCRIBELINK%';
     const bodyMessageAlignment = document.getElementById('bodyMessageAlignment').value || 'left';
+    const afterCtaMessageAlignment = document.getElementById('afterCtaMessageAlignment').value || 'left';
 
     const address = companyName === 'ActiveView Inc.' ? '5004 Cobalt CT Greenacres, Florida 33463, US' : '10616 Keemia tn4, Tallinn, Estonia';
 
@@ -70,7 +71,7 @@ function updatePreview() {
                 </td>
             </tr>
             <tr>
-                <td style="padding-left: 20px; padding-right: 20px; text-align: left; background-color: #ffffff; border-radius: 0 0 8px 8px;">
+                <td style="padding-left: 20px; padding-right: 20px; text-align: ${afterCtaMessageAlignment}; background-color: #ffffff; border-radius: 0 0 8px 8px;">
                     <p style="margin: 0 0 0 0; line-height: 1.4; font-size: 18px;">
                         ${afterCtaMessage}
                     </p>
@@ -109,6 +110,7 @@ function updatePreview() {
     htmlCodeElement.textContent = emailTemplate.replace(/<style>.*?<\/style>/s, ''); 
     Prism.highlightElement(htmlCodeElement); 
 }
+
 
 
 
