@@ -7,6 +7,7 @@ function updatePreview() {
     const buttonTextColor = document.getElementById('buttonTextColor').value;
     const buttonUrl = document.getElementById('buttonUrl').value;
     const buttonText = document.getElementById('buttonText').value;
+    const buttonFontSize = document.getElementById('buttonFontSize').value || 24; 
     const paddingTop = document.getElementById('paddingTop').value || 20;
     const paddingBottom = document.getElementById('paddingBottom').value || 0;
 
@@ -64,12 +65,13 @@ function updatePreview() {
                     <table role="presentation" cellspacing="0" cellpadding="0" border="0" width="100%">
                         <tr>
                             <td align="center" style="padding-top: ${paddingTop}px; padding-bottom: ${paddingBottom}px;">
-                                <a href="${fullUrl}" style="display: inline-block; background-color: ${buttonColor}; color: ${buttonTextColor}; font-size: 24px; font-weight: bold; text-align: center; text-decoration: none; padding: 12px 24px; border-radius: 5px; margin: 20px 0;">${buttonText}</a>
+                                <a href="${fullUrl}" style="display: inline-block; background-color: ${buttonColor}; color: ${buttonTextColor}; font-size: ${buttonFontSize}px; font-weight: bold; text-align: center; text-decoration: none; padding: 12px 24px; border-radius: 5px; margin: 20px 0;">${buttonText}</a>
                             </td>
                         </tr>
                     </table>
                 </td>
             </tr>
+            <!-- After CTA message section -->
             <tr>
                 <td style="padding-left: 20px; padding-right: 20px; text-align: ${afterCtaMessageAlignment}; background-color: #ffffff; border-radius: 0 0 8px 8px;">
                     <p style="margin: 0 0 0 0; line-height: 1.4; font-size: 18px;">
@@ -77,6 +79,7 @@ function updatePreview() {
                     </p>
                 </td>
             </tr>
+            <!-- Footer -->
             <tr>
                 <td style="padding: 20px; text-align: center; background-color: #ffffff; border-radius: 0 0 8px 8px;">
                     <hr style="border: none; border-top: 1px solid #cccccc; margin: 20px 0;" />
