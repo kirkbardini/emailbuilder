@@ -26,19 +26,33 @@ function updatePreview() {
 
     const address = companyName === 'ActiveView Inc.' ? '5004 Cobalt CT Greenacres, Florida 33463, US' : '10616 Keemia tn4, Tallinn, Estonia';
 
-    const messages = {
-        en: "All our content is designed to help you. If you no longer want to receive our recommendations, you can unsubscribe below.",
-        es: "Todo nuestro contenido está diseñado para ayudarte. Si ya no deseas recibir nuestras recomendaciones, puedes darte de baja a continuación.",
-        de: "All unsere Inhalte sind darauf ausgelegt, dir zu helfen. Wenn du unsere Empfehlungen nicht mehr erhalten möchtest, kannst du dich unten abmelden",
+    const texts = {
+        unsubscribeMessage: {
+            en: "All our content is designed to help you. If you no longer want to receive our recommendations, you can unsubscribe below.",
+            es: "Todo nuestro contenido está diseñado para ayudarte. Si ya no deseas recibir nuestras recomendaciones, puedes darte de baja a continuación.",
+            de: "All unsere Inhalte sind darauf ausgelegt, dir zu helfen. Wenn du unsere Empfehlungen nicht mehr erhalten möchtest, kannst du dich unten abmelden"
+        },
+        unsubscribeLinkText: {
+            en: "Unsubscribe from this list",
+            es: "Darse de baja",
+            de: "Abmelden"
+        },
+        privacyText: {
+            en: "Privacy",
+            es: "Privacidad",
+            de: "Datenschutzerklärung"
+        },
+        termsText: {
+            en: "Terms of Use",
+            es: "Términos de Uso",
+            de: "Nutzungsbedingungen"
+        }
     };
-    
-    const unsubscribeMessage = messages[language] || messages['en'];
-    
-
-    const unsubscribeLinkText = language === 'en' ? "Unsubscribe from this list" : "Darse de baja";
-
-    const privacyText = language === 'en' ? "Privacy" : "Privacidad";
-    const termsText = language === 'en' ? "Terms of Use" : "Términos de Uso";
+            
+    const unsubscribeMessage = texts.unsubscribeMessage[language] || texts.unsubscribeMessage['en'];
+    const unsubscribeLinkText = texts.unsubscribeLinkText[language] || texts.unsubscribeLinkText['en'];
+    const privacyText = texts.privacyText[language] || texts.privacyText['en'];
+    const termsText = texts.termsText[language] || texts.termsText['en'];
 
     if (!buttonUrl || !buttonText) {
         return;
