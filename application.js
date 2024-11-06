@@ -26,9 +26,14 @@ function updatePreview() {
 
     const address = companyName === 'ActiveView Inc.' ? '5004 Cobalt CT Greenacres, Florida 33463, US' : '10616 Keemia tn4, Tallinn, Estonia';
 
-    const unsubscribeMessage = language === 'en'
-        ? "All our content is designed to help you. If you no longer want to receive our recommendations, you can unsubscribe below."
-        : "Todo nuestro contenido está diseñado para ayudarte. Si ya no deseas recibir nuestras recomendaciones, puedes darte de baja a continuación.";
+    const messages = {
+        en: "All our content is designed to help you. If you no longer want to receive our recommendations, you can unsubscribe below.",
+        es: "Todo nuestro contenido está diseñado para ayudarte. Si ya no deseas recibir nuestras recomendaciones, puedes darte de baja a continuación.",
+        de: "All unsere Inhalte sind darauf ausgelegt, dir zu helfen. Wenn du unsere Empfehlungen nicht mehr erhalten möchtest, kannst du dich unten abmelden",
+    };
+    
+    const unsubscribeMessage = messages[language] || messages['en'];
+    
 
     const unsubscribeLinkText = language === 'en' ? "Unsubscribe from this list" : "Darse de baja";
 
