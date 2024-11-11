@@ -20,7 +20,7 @@ function updatePreview() {
     const utmCampaign = document.getElementById('utmCampaign').value || 'email_campaign_name';
     const companyName = document.getElementById('companyName').value;
     const language = document.getElementById('language').value;
-    const unsubscribeLink = document.getElementById('unsubscribeLink').value || '%UNSUBSCRIBELINK%';
+    const unsubscribeLink = document.getElementById('unsubscribeLink').value || '{{ unsubscribe }}';
     const bodyMessageAlignment = document.getElementById('bodyMessageAlignment').value || 'left';
     const afterCtaMessageAlignment = document.getElementById('afterCtaMessageAlignment').value || 'left';
 
@@ -109,7 +109,7 @@ function updatePreview() {
                         <i>${unsubscribeMessage}</i>
                     </p>
                     <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
-                        <a href="${unsubscribeLink}" style="color: #666666; font-weight: bold; text-decoration: underline;">${unsubscribeLinkText}</a>
+                        <a id="skip_event" href="${unsubscribeLink}" target="_blank" style="color: #666666; font-weight: bold; text-decoration: underline;">${unsubscribeLinkText}</a>
                     </p>
                     <p style="margin: 10px 0; line-height: 1.4; font-size: 14px; color: #666666;">
                         <a href="${urlDomain}/privacy/" style="color: #666666; text-decoration: underline;">${privacyText}</a>
