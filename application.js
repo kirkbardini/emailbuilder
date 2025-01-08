@@ -30,22 +30,26 @@ function updatePreview() {
         unsubscribeMessage: {
             en: "All our content is designed to help you. If you no longer want to receive our recommendations, you can unsubscribe below.",
             es: "Todo nuestro contenido está diseñado para ayudarte. Si ya no deseas recibir nuestras recomendaciones, puedes darte de baja a continuación.",
-            de: "All unsere Inhalte sind darauf ausgelegt, dir zu helfen. Wenn du unsere Empfehlungen nicht mehr erhalten möchtest, kannst du dich unten abmelden"
+            de: "All unsere Inhalte sind darauf ausgelegt, dir zu helfen. Wenn du unsere Empfehlungen nicht mehr erhalten möchtest, kannst du dich unten abmelden",
+            it: "Tutti i nostri contenuti sono pensati per aiutarti. Se non desideri più ricevere le nostre raccomandazioni, puoi annullare l'iscrizione qui sotto."
         },
         unsubscribeLinkText: {
             en: "Unsubscribe from this list",
             es: "Darse de baja",
-            de: "Abmelden"
+            de: "Abmelden",
+            it: "Annulla iscrizione"
         },
         privacyText: {
             en: "Privacy",
             es: "Privacidad",
-            de: "Datenschutzerklärung"
+            de: "Datenschutzerklärung",
+            it: "Politica sulla Privacy"
         },
         termsText: {
             en: "Terms of Use",
             es: "Términos de Uso",
-            de: "Nutzungsbedingungen"
+            de: "Nutzungsbedingungen",
+            it: "Termini d’Uso"
         }
     };
             
