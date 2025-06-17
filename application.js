@@ -31,25 +31,29 @@ function updatePreview() {
             en: "All our content is designed to help you. If you no longer want to receive our recommendations, you can unsubscribe below.",
             es: "Todo nuestro contenido está diseñado para ayudarte. Si ya no deseas recibir nuestras recomendaciones, puedes darte de baja a continuación.",
             de: "All unsere Inhalte sind darauf ausgelegt, dir zu helfen. Wenn du unsere Empfehlungen nicht mehr erhalten möchtest, kannst du dich unten abmelden",
-            it: "Tutti i nostri contenuti sono pensati per aiutarti. Se non desideri più ricevere le nostre raccomandazioni, puoi annullare l'iscrizione qui sotto."
+            it: "Tutti i nostri contenuti sono pensati per aiutarti. Se non desideri più ricevere le nostre raccomandazioni, puoi annullare l'iscrizione qui sotto.",
+            fr: "Tout notre contenu est conçu pour vous aider. Si vous ne souhaitez plus recevoir nos recommandations, vous pouvez vous désabonner ci-dessous."
         },
         unsubscribeLinkText: {
             en: "Unsubscribe from this list",
             es: "Darse de baja",
             de: "Abmelden",
-            it: "Annulla iscrizione"
+            it: "Annulla iscrizione",
+            fr: "Se désabonner de cette liste"
         },
         privacyText: {
             en: "Privacy",
             es: "Privacidad",
             de: "Datenschutzerklärung",
-            it: "Politica sulla Privacy"
+            it: "Politica sulla Privacy",
+            fr: "Politique de confidentialité"
         },
         termsText: {
             en: "Terms of Use",
             es: "Términos de Uso",
             de: "Nutzungsbedingungen",
-            it: "Termini d’Uso"
+            it: "Termini d’Uso",
+            fr: "Conditions Générales d’Utilisation"
         }
     };
             
